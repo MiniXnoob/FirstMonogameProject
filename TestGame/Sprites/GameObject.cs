@@ -17,13 +17,14 @@ namespace TestGame.Sprites
     {
         protected Texture2D _texture;
 
+
         public Vector2 Position;
         public Vector2 Velocity;
         public Color Colour = Color.White;
         public float Speed;
         public Input Input;
 
-        public Rectangle Rectangle
+        public Rectangle RectangleCollider
         {
             get
             {
@@ -46,39 +47,37 @@ namespace TestGame.Sprites
             spriteBatch.Draw(_texture, Position, Colour);
         }
 
-        #region Colloision
         protected bool IsTouchingLeft(GameObject sprite)
         {
-            return this.Rectangle.Right + this.Velocity.X > sprite.Rectangle.Left &&
-              this.Rectangle.Left < sprite.Rectangle.Left &&
-              this.Rectangle.Bottom > sprite.Rectangle.Top &&
-              this.Rectangle.Top < sprite.Rectangle.Bottom;
+            return this.RectangleCollider.Right + this.Velocity.X > sprite.RectangleCollider.Left &&
+              this.RectangleCollider.Left < sprite.RectangleCollider.Left &&
+              this.RectangleCollider.Bottom > sprite.RectangleCollider.Top &&
+              this.RectangleCollider.Top < sprite.RectangleCollider.Bottom;
         }
 
         protected bool IsTouchingRight(GameObject sprite)
         {
-            return this.Rectangle.Left + this.Velocity.X < sprite.Rectangle.Right &&
-              this.Rectangle.Right > sprite.Rectangle.Right &&
-              this.Rectangle.Bottom > sprite.Rectangle.Top &&
-              this.Rectangle.Top < sprite.Rectangle.Bottom;
+            return this.RectangleCollider.Left + this.Velocity.X < sprite.RectangleCollider.Right &&
+              this.RectangleCollider.Right > sprite.RectangleCollider.Right &&
+              this.RectangleCollider.Bottom > sprite.RectangleCollider.Top &&
+              this.RectangleCollider.Top < sprite.RectangleCollider.Bottom;
         }
 
         protected bool IsTouchingTop(GameObject sprite)
         {
-            return this.Rectangle.Bottom + this.Velocity.Y > sprite.Rectangle.Top &&
-              this.Rectangle.Top < sprite.Rectangle.Top &&
-              this.Rectangle.Right > sprite.Rectangle.Left &&
-              this.Rectangle.Left < sprite.Rectangle.Right;
+            return this.RectangleCollider.Bottom + this.Velocity.Y > sprite.RectangleCollider.Top &&
+              this.RectangleCollider.Top < sprite.RectangleCollider.Top &&
+              this.RectangleCollider.Right > sprite.RectangleCollider.Left &&
+              this.RectangleCollider.Left < sprite.RectangleCollider.Right;
         }
 
         protected bool IsTouchingBottom(GameObject sprite)
         {
-            return this.Rectangle.Top + this.Velocity.Y < sprite.Rectangle.Bottom &&
-              this.Rectangle.Bottom > sprite.Rectangle.Bottom &&
-              this.Rectangle.Right > sprite.Rectangle.Left &&
-              this.Rectangle.Left < sprite.Rectangle.Right;
+            return this.RectangleCollider.Top + this.Velocity.Y < sprite.RectangleCollider.Bottom &&
+              this.RectangleCollider.Bottom > sprite.RectangleCollider.Bottom &&
+              this.RectangleCollider.Right > sprite.RectangleCollider.Left &&
+              this.RectangleCollider.Left < sprite.RectangleCollider.Right;
         }
 
-        #endregion
     }
 }

@@ -1,17 +1,18 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-
 using System.Collections.Generic;
 
 using TestGame.Models;
 using TestGame.Sprites;
-
 namespace TestGame
 {
 
     public class Game1 : Game
     {
+        private float ballsX;
+        private float ballsY;
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
@@ -44,7 +45,6 @@ namespace TestGame
 
             _sprites = new List<GameObject>()
               {
-                new Ball(ballTexture),
                 new Ground(groundTexture),
                 new Player(playerTexture)
                 {
@@ -56,7 +56,6 @@ namespace TestGame
                     Down = Keys.S,
                   },
                   Position = new Vector2(300, 400),
-                  Colour = Color.Red,
                   Speed = 5,
                 },
                 new Player(playerTexture)
@@ -72,6 +71,10 @@ namespace TestGame
                   Colour = Color.Blue,
                   Speed = 5,
                 },
+                 new Ball(ballTexture)
+                {
+                    Position = new Vector2(100, 100),
+        }
           };
         }
 
@@ -96,6 +99,8 @@ namespace TestGame
 
             foreach (var sprite in _sprites)
                 sprite.Draw(spriteBatch);
+    
+
 
             spriteBatch.End();
 
