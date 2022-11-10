@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
@@ -24,6 +25,7 @@ namespace TestGame
             Content.RootDirectory = "Content";
             base.IsMouseVisible = true;
             base.IsFixedTimeStep = true;
+
         }
 
 
@@ -41,6 +43,7 @@ namespace TestGame
             var playerTexture = Content.Load<Texture2D>("Block");
             var ballTexture = Content.Load<Texture2D>("smileball");
             var groundTexture = Content.Load<Texture2D>("Cross Screen obstacle");
+            var font = Content.Load<SpriteFont>("Consolas16");
 
 
             _sprites = new List<GameObject>()
@@ -74,6 +77,13 @@ namespace TestGame
                  new Ball(ballTexture)
                 {
                     Position = new Vector2(100, 100),
+                     Input = new Input()
+                  {
+                    Left = Keys.J,
+                    Right = Keys.P,
+                    Up = Keys.I,    
+                    Down = Keys.K,
+                  },
         }
           };
         }
@@ -99,11 +109,11 @@ namespace TestGame
 
             foreach (var sprite in _sprites)
                 sprite.Draw(spriteBatch);
-    
+            
 
 
             spriteBatch.End();
-
+            sound.Play();
             base.Draw(gameTime);
         }
     }

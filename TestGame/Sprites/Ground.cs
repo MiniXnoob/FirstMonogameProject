@@ -15,7 +15,7 @@ namespace TestGame.Sprites
         }
 
         public Size2 Bounds { get; set; }
-
+        
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.DrawRectangle(base.Position, Bounds, base.Colour);
