@@ -35,7 +35,6 @@ namespace TestGame
             base.Initialize();
         }
 
-
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -99,7 +98,6 @@ namespace TestGame
 
             base.Update(gameTime);
         }
-
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
@@ -109,8 +107,6 @@ namespace TestGame
 
             foreach (var sprite in _sprites)
                 sprite.Draw(spriteBatch);
-            
-
 
             spriteBatch.End();
             base.Draw(gameTime);
