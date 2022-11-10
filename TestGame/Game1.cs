@@ -113,7 +113,6 @@ namespace TestGame
 
 
             spriteBatch.End();
-            sound.Play();
             base.Draw(gameTime);
         }
     }
