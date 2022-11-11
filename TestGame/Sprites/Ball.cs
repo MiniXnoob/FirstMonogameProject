@@ -45,47 +45,25 @@ namespace TestGame.Sprites
           continue;
 
         if (this.Velocity.X > 0 && this.IsTouchingLeft(sprite))
-                {
-                    this.Velocity.X = 0;
-                }
+          this.Velocity.X =0;
         if (this.Velocity.X < 0 && this.IsTouchingRight(sprite))
-                {
-                    this.Velocity.X = 0;
-                }
+          this.Velocity.X = 0;
         if (this.Velocity.Y > 0 && this.IsTouchingTop(sprite))
-                {
-                    this.Velocity.Y = 0;
-                }
+          this.Velocity.Y = 0;
         if (this.Velocity.Y < 0 && this.IsTouchingBottom(sprite))
-                {
-                    this.Velocity.Y = 0;
-                    onGround = true;
-                }
-            }
+          this.Velocity.Y = 0;
+
+      }
 
             Position += Velocity;
 
     }
         private void Gravity()
         {
-            if (Keyboard.GetState().IsKeyDown(Input.Left))
-                Velocity.X = -Speed;
-            else if (Keyboard.GetState().IsKeyDown(Input.Right))
-                Velocity.X = Speed;
-
-            if (Keyboard.GetState().IsKeyDown(Input.Up))
-                Velocity.Y = -Speed;
-            else if (Keyboard.GetState().IsKeyDown(Input.Down))
-                Velocity.Y = Speed;
-
             if (onGround == false)
                 {
                     Velocity.Y += Speed;
                 }
-            else
-            {
-                Speed += 0.5f;
-            }
         }       
 
     }
