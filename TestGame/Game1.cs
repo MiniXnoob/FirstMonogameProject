@@ -1,9 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
-
 using TestGame.Models;
 using TestGame.Sprites;
 namespace TestGame
@@ -44,7 +42,6 @@ namespace TestGame
             var groundTexture = Content.Load<Texture2D>("Cross Screen obstacle");
             var font = Content.Load<SpriteFont>("Consolas16");
 
-
             _sprites = new List<GameObject>()
               {
                 new Ground(groundTexture),
@@ -76,14 +73,7 @@ namespace TestGame
                  new Ball(ballTexture)
                 {
                     Position = new Vector2(100, 100),
-                     Input = new Input()
-                  {
-                    Left = Keys.J,
-                    Right = Keys.P,
-                    Up = Keys.I,    
-                    Down = Keys.K,
-                  },
-        }
+                }
           };
         }
 
@@ -98,6 +88,7 @@ namespace TestGame
 
             base.Update(gameTime);
         }
+
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
@@ -107,9 +98,8 @@ namespace TestGame
 
             foreach (var sprite in _sprites)
                 sprite.Draw(spriteBatch);
-
             spriteBatch.End();
             base.Draw(gameTime);
         }
     }
-}
+} 

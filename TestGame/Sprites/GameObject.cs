@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using TestGame.Models;
+using TestGame.Physics;
 
 namespace TestGame.Sprites
 {
@@ -17,9 +18,10 @@ namespace TestGame.Sprites
     {
         protected Texture2D _texture;
 
+        private readonly Collider _collider = new();
 
-        public Vector2 Position;
-        public Vector2 Velocity;
+        public Vector2 Position = new();
+        public Vector2 Velocity = new();
         public Color Colour = Color.White;
         public float Speed;
         public Input Input;
@@ -39,45 +41,21 @@ namespace TestGame.Sprites
 
         public virtual void Update(GameTime gameTime, List<GameObject> sprites)
         {
-
         }
 
-        public virtual void Draw(SpriteBatch spriteBatch)
+        public virtual void Move(GameTime gameTime)
         {
-            spriteBatch.Draw(_texture, Position, Colour);
+
         }
 
-        protected bool IsTouchingLeft(GameObject sprite)
-        {
-            return this.RectangleCollider.Right + this.Velocity.X > sprite.RectangleCollider.Left &&
-              this.RectangleCollider.Left < sprite.RectangleCollider.Left &&
-              this.RectangleCollider.Bottom > sprite.RectangleCollider.Top &&
-              this.RectangleCollider.Top < sprite.RectangleCollider.Bottom;
-        }
+        public virtual void Draw(SpriteBatch spriteBatch) => spriteBatch.Draw(_texture, Position, Colour);
 
-        protected bool IsTouchingRight(GameObject sprite)
-        {
-            return this.RectangleCollider.Left + this.Velocity.X < sprite.RectangleCollider.Right &&
-              this.RectangleCollider.Right > sprite.RectangleCollider.Right &&
-              this.RectangleCollider.Bottom > sprite.RectangleCollider.Top &&
-              this.RectangleCollider.Top < sprite.RectangleCollider.Bottom;
-        }
+        protected bool IsTouchingLeft(GameObject sprite) => _collider.IsTouchingLeft(this, sprite);
 
-        protected bool IsTouchingTop(GameObject sprite)
-        {
-            return this.RectangleCollider.Bottom + this.Velocity.Y > sprite.RectangleCollider.Top &&
-              this.RectangleCollider.Top < sprite.RectangleCollider.Top &&
-              this.RectangleCollider.Right > sprite.RectangleCollider.Left &&
-              this.RectangleCollider.Left < sprite.RectangleCollider.Right;
-        }
+        protected bool IsTouchingRight(GameObject sprite) => _collider.IsTouchingRight(this, sprite);
 
-        protected bool IsTouchingBottom(GameObject sprite)
-        {
-            return this.RectangleCollider.Top + this.Velocity.Y < sprite.RectangleCollider.Bottom &&
-              this.RectangleCollider.Bottom > sprite.RectangleCollider.Bottom &&
-              this.RectangleCollider.Right > sprite.RectangleCollider.Left &&
-              this.RectangleCollider.Left < sprite.RectangleCollider.Right;
-        }
+        protected bool IsTouchingTop(GameObject sprite) => _collider.IsTouchingTop(this, sprite);
 
+        protected bool IsTouchingBottom(GameObject sprite) => _collider.IsTouchingBottom(this, sprite);
     }
 }
