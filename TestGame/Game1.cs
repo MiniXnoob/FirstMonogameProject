@@ -66,13 +66,14 @@ namespace TestGame
                   Position = new Vector2(400, 400),
                   Colour = Color.Blue,
                   Speed = 5,
-                },
-                 new Ball(ballTexture)
-                {
-                    UseGravity = true,
-                    Position = new Vector2(100, 100),
                 }
+                
           };
+            _sprites.Add(new Ball(ballTexture, _sprites)
+            {
+                UseGravity = true,
+                Position = new Vector2(100, 100),
+            });
         }
 
         protected override void UnloadContent()

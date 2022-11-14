@@ -17,10 +17,12 @@ namespace TestGame.Sprites
   {
     private Vector2? _startPosition = null;
     private float? _startSpeed;
-    private bool onGround = false;
+    public bool onGround;
+    
+    
 
-    public Ball(Texture2D texture)
-      : base(texture)
+    public Ball(Texture2D texture, List<GameObject> gameObjects)
+      : base(texture, gameObjects)
     {
       Speed = 0.5f;
     }
@@ -46,13 +48,13 @@ namespace TestGame.Sprites
           continue;
 
             if (this.Velocity.X > 0 && this.IsTouchingLeft(sprite))
-              this.Velocity.X =0;
+              onGround = true;
             if (this.Velocity.X < 0 && this.IsTouchingRight(sprite))
-              this.Velocity.X = 0;
+              onGround = true;
             if (this.Velocity.Y > 0 && this.IsTouchingTop(sprite))
-              this.Velocity.Y = 0;
+              onGround = true;
             if (this.Velocity.Y < 0 && this.IsTouchingBottom(sprite))
-              this.Velocity.Y = 0;
+              onGround = true;
 
         }
 
