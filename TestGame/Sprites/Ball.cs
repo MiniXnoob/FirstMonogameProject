@@ -7,6 +7,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
+using MonoGame.Extended;
+
 using TestGame.Physics;
 
 namespace TestGame.Sprites
@@ -38,9 +40,6 @@ namespace TestGame.Sprites
 
             //}
 
-
-            Gravity();
-
         foreach (var sprite in sprites)
         {
         if (sprite == this)
@@ -57,19 +56,9 @@ namespace TestGame.Sprites
 
         }
 
-        Position += Velocity;
+        //Position += Velocity;
 
-    }
-
-
-        private void Gravity(GameTime gameTime)
-        {
-            if (onGround == false)
-                {
-                Velocity.Y = Euler.ExplicitEuler(Velocity.Y, (float)gameTime.ElapsedGameTime.TotalSeconds);
-                //Velocity.Y = Euler.ExplicitEuler(1, 1, (float)gameTime.ElapsedGameTime.TotalSeconds);
-            }
-        }       
+    }  
 
     }
   }

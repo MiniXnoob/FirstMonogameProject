@@ -18,10 +18,12 @@ namespace TestGame.Sprites
         private readonly Collider _collider = new();
 
         public Vector2 Position = new();
-        public Vector2 Velocity = new();
+        public Vector2 Velocity = new(0, 0.001f);
         public Color Colour = Color.White;
         public float Speed;
         public Input Input;
+
+        public bool UseGravity { get; set; }
 
         public Rectangle RectangleCollider
         {
@@ -44,6 +46,26 @@ namespace TestGame.Sprites
         public virtual void Move(GameTime gameTime)
         {
 
+        }
+
+        public virtual void Gravity(GameTime gameTime)
+        {
+            var dt = (float)gameTime.TotalGameTime.TotalSeconds;
+            var mass = 1f;
+            var g = 9.81f;
+            var gravity = mass * g;
+
+            var accelleration = gravity * 0.5f;
+
+            if (UseGravity)
+            {
+                Velocity.Y = accelleration;
+                //Velocity.X = Euler.ExplicitEuler(1, 1, (float)gameTime.TotalGameTime.TotalSeconds);
+
+                Position += Velocity;
+                Console.WriteLine(dt);
+
+            }
         }
 
         public virtual void Draw(SpriteBatch spriteBatch) => spriteBatch.Draw(_texture, Position, Colour);

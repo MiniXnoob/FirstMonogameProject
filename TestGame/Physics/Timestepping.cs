@@ -1,40 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿//using System;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Text;
+//using System.Threading.Tasks;
 
-using Microsoft.Xna.Framework;
+//using Microsoft.Xna.Framework;
 
-using MonoGame.Extended;
+//using MonoGame.Extended;
 
-namespace TestGame.Physics
-{
-    internal static class Timestepping
-    {
-        public static void RunStepping(GameTime gameTime)
-        {
-            const float fps = 100;
-            const float dt = 1 / fps;
-            float accumulator = 0;
+//namespace TestGame.Physics
+//{
+//    internal static class Timestepping
+//    {
+//        public static void RunStepping(GameTime gameTime)
+//        {
+//            const float fps = 100;
+//            const float dt = 1 / fps;
+//            float accumulator = 0;
 
-            float frameStart = gameTime.GetElapsedSeconds();
+//            float frameStart = gameTime.GetElapsedSeconds();
 
-            while (true)
-            {
-                float currentTime = gameTime.GetElapsedSeconds();
+//            while (true)
+//            {
+//                float currentTime = gameTime.GetElapsedSeconds();
 
-                accumulator += currentTime - frameStart;
+//                accumulator += currentTime - frameStart;
 
-                frameStart = currentTime;
+//                frameStart = currentTime;
 
-                while (accumulator > dt)
-                {
+//                while (accumulator > dt)
+//                {
 
-                    accumulator -= dt;
-                }
-            }
-
-        }
-    }
-}
+//                    accumulator -= dt;
+//                }
+//            }
+//        }
+//    }
+//}

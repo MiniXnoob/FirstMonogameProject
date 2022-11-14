@@ -69,6 +69,7 @@ namespace TestGame
                 },
                  new Ball(ballTexture)
                 {
+                    UseGravity = true,
                     Position = new Vector2(100, 100),
                 }
           };
@@ -81,7 +82,10 @@ namespace TestGame
         protected override void Update(GameTime gameTime)
         {
             foreach (var sprite in _sprites)
+            {
                 sprite.Update(gameTime, _sprites);
+                sprite.Gravity(gameTime);
+            }
 
             base.Update(gameTime);
         }
