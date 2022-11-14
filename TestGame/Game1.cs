@@ -42,31 +42,39 @@ namespace TestGame
             _sprites = new List<GameObject>()
               {
                 new Ground(groundTexture),
-                new Player(playerTexture)
+                new Walll(groundTexture)
                 {
-                  Input = new Input()
-                  {
-                    Left = Keys.A,
-                    Right = Keys.D,
-                    Up = Keys.W,
-                    Down = Keys.S,
-                  },
-                  Position = new Vector2(300, 400),
-                  Speed = 5,
+                    Position = new Vector2(0, 0),
                 },
-                new Player(playerTexture)
+                new Walll(groundTexture)
                 {
-                  Input = new Input()
-                  {
-                    Left = Keys.Left,
-                    Right = Keys.Right,
-                    Up = Keys.Up,
-                    Down = Keys.Down,
-                  },
-                  Position = new Vector2(400, 400),
-                  Colour = Color.Blue,
-                  Speed = 5,
+                    Position = new Vector2(790, 0)
                 }
+                //new Player(playerTexture)
+                //{
+                //  Input = new Input()
+                //  {
+                //    Left = Keys.A,
+                //    Right = Keys.D,
+                //    Up = Keys.W,
+                //    Down = Keys.S,
+                //  },
+                //  Position = new Vector2(300, 400),
+                //  Speed = 5,
+                //},
+                //new Player(playerTexture)
+                //{
+                //  Input = new Input()
+                //  {
+                //    Left = Keys.Left,
+                //    Right = Keys.Right,
+                //    Up = Keys.Up,
+                //    Down = Keys.Down,
+                //  },
+                //  Position = new Vector2(400, 400),
+                //  Colour = Color.Blue,
+                //  Speed = 5,
+                //}
                 
           };
             _sprites.Add(new Ball(ballTexture, _sprites)

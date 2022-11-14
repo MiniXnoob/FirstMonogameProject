@@ -24,7 +24,6 @@ namespace TestGame.Sprites
         public Color Colour = Color.White;
         public float Speed;
         public Input Input;
-        private bool wasOnGround = false;
 
         public bool UseGravity { get; set; }
 
@@ -71,7 +70,6 @@ namespace TestGame.Sprites
 
                 {
                     Velocity.Y += accelleration;
-                    
                     //Velocity.X = Euler.ExplicitEuler(1, 1, (float)gameTime.TotalGameTime.TotalSeconds);
 
 
@@ -85,9 +83,24 @@ namespace TestGame.Sprites
                     //Velocity.Y = accelleration;
                     //Position += Velocity;
                     Velocity.Y = Velocity.Y * -1 * 0.85f;
-                    
+                if (!IsTouchingRight())
+                    {
+                        Velocity.X += accelleration;
+                    }
+                else if (IsTouchingRight())
+                    {
+                        Velocity.X = Velocity.X * -1 * 0.85f;
+                    }
+                    if (!IsTouchingLeft())
+                    {
+                        Velocity.X += accelleration;
+                    }
+                    else if (IsTouchingLeft())
+                    {
+                        Velocity.X = Velocity.X * 1 * 0.85f;
+                    }
                 }
-    
+
                 Position += Velocity;
             }
 
@@ -105,5 +118,8 @@ namespace TestGame.Sprites
         protected bool IsTouchingBottom(GameObject sprite) => _collider.IsTouchingBottom(this, sprite);
         
         protected bool IsTouchingBottom() => _collider.GetTouchingDirections(this).Any(x => x == Direction.Top);
+        protected bool IsTouchingLeft() => _collider.GetTouchingDirections(this).Any(x => x == Direction.Right);
+        protected bool IsTouchingRight() => _collider.GetTouchingDirections(this).Any(x => x == Direction.Left);
+
     }
 }
