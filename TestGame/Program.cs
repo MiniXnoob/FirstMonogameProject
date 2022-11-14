@@ -9,7 +9,6 @@ namespace TestGame
         [STAThread]
         static void Main()
         {
-            Console.WriteLine(Euler.ExplicitEuler(1, 5));
             using (var game = new Game1())
                 game.Run();
         }
