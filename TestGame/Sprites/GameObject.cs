@@ -74,6 +74,7 @@ namespace TestGame.Sprites
                 //Console.WriteLine(onGround);
 
             }
+
         }
 
         public virtual void Draw(SpriteBatch spriteBatch) => spriteBatch.Draw(_texture, Position, Colour);
