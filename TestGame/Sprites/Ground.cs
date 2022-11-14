@@ -1,23 +1,24 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MonoGame.Extended;
+using Microsoft.Xna.Framework.Input;
+
+using TestGame.Models;
 
 namespace TestGame.Sprites
 {
     public class Ground : GameObject
     {
-        public Ground(Texture2D texture) : base(texture)
+        public Ground()
         {
-            Bounds = new Size2(800, 10);
-            Colour = Color.White;
-            Position = new Vector2(0, 450);
+            KeyboardActions.Add(new KeyboardAction(Keys.Space, () =>
+            {
+                Console.WriteLine(RectangleCollider);
+            }));
         }
 
-        public Size2 Bounds { get; set; }
-        
-        public override void Draw(SpriteBatch spriteBatch)
+        public static Ground Default(Texture2D? texture) => new()
         {
-            spriteBatch.DrawRectangle(base.Position, Bounds, base.Colour);
-        }
+            Colour = Color.White, Position = new Vector2(0, 450), Texture = texture, RectangleCollider = new Rectangle(new Point(0, 450), new Point(800, 10)),
+        };
     }
 }

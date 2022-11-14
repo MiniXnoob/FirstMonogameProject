@@ -1,58 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
+using TestGame.Models;
+
 namespace TestGame.Sprites
 {
-
     public class Player : GameObject
     {
-        public Player(Texture2D texture)
-          : base(texture)
+        public static Player One(Texture2D? texture) => new Player()
         {
-
-        }
-
-        public override void Update(GameTime gameTime, List<GameObject> sprites)
-        {
-            Move();
-
-            foreach (var sprite in sprites)
+            Texture = texture,
+            Input = new Input()
             {
-                if (sprite == this)
-                    continue;
+                Left = Keys.A, Right = Keys.D, Up = Keys.W, Down = Keys.S,
+            },
+            Position = new Vector2(300, 400),
+            Speed = 5,
+        };
 
-                if ((this.Velocity.X > 0 && this.IsTouchingLeft(sprite)) ||
-                    (this.Velocity.X < 0 & this.IsTouchingRight(sprite)))
-                    this.Velocity.X = 0;
-
-                if ((this.Velocity.Y > 0 && this.IsTouchingTop(sprite)) ||
-                    (this.Velocity.Y < 0 & this.IsTouchingBottom(sprite)))
-                    this.Velocity.Y = 0;
-            }
-
-            Position += Velocity;
-
-            Velocity = Vector2.Zero;
-        }
-
-        private void Move()
+        public static Player Two(Texture2D? texture) => new()
         {
-            if (Keyboard.GetState().IsKeyDown(Input.Left))
-                Velocity.X = -Speed;
-            else if (Keyboard.GetState().IsKeyDown(Input.Right))
-                Velocity.X = Speed;
-
-            if (Keyboard.GetState().IsKeyDown(Input.Up))
-                Velocity.Y = -Speed;
-            else if (Keyboard.GetState().IsKeyDown(Input.Down))
-                Velocity.Y = Speed;
-        }
+            Texture = texture,
+            Input = new Input()
+            {
+                Left = Keys.Left, Right = Keys.Right, Up = Keys.Up, Down = Keys.Down,
+            },
+            Position = new Vector2(400, 400),
+            Colour = Color.Blue,
+            Speed = 5,
+        };
     }
 }
