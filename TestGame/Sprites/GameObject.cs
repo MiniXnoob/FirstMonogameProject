@@ -4,6 +4,7 @@ using MonoGame.Extended;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using TestGame.Models;
@@ -23,6 +24,7 @@ namespace TestGame.Sprites
         public Color Colour = Color.White;
         public float Speed;
         public Input Input;
+        private bool wasOnGround = false;
 
         public bool UseGravity { get; set; }
 
@@ -64,14 +66,23 @@ namespace TestGame.Sprites
 
             var accelleration = gravity * 0.5f;
 
-            if (UseGravity && !IsTouchingBottom())
+            if (UseGravity && !IsTouchingBottom() && wasOnGround == false)
             {
                 Velocity.Y = accelleration;
                 //Velocity.X = Euler.ExplicitEuler(1, 1, (float)gameTime.TotalGameTime.TotalSeconds);
 
                 Position += Velocity;
-                //Console.WriteLine(dt);
+                Console.WriteLine(dt);
                 //Console.WriteLine(onGround);
+
+            }
+            else if (UseGravity)
+            {
+                wasOnGround = true;
+                var save_Velocity = accelleration;
+                accelleration = save_Velocity * -0.8f;
+                Velocity.Y = accelleration;
+                Position += Velocity;
 
             }
         }
