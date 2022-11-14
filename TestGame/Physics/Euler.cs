@@ -17,10 +17,25 @@ namespace TestGame.Physics
         /// <param name="v">Velocity in X direction</param>
         /// <param name="dt">ΔTime</param>
         /// <returns>Product of Explicit Euler</returns>
-        public static float ExplicitEulerX(float v, float dt)
+        public static float ExplicitEuler(float v, float dt)
         {
-            var x = v * dt;
-            return x;
+            var result = v * dt;
+            return result;
+        }
+
+        public static float ExplicitEuler(float m, float f, float dt)
+        {
+            var result = (1/m * f) * dt;
+            return result;
+
+        }
+
+        public static float SympleticEuler(float m, float f, float dt)
+        {
+            var v = (1 / m * f) * dt;
+            var result = v * dt;
+            return result;
+
         }
     }
 }

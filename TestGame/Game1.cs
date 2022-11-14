@@ -4,9 +4,9 @@ using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 using TestGame.Models;
 using TestGame.Sprites;
+
 namespace TestGame
 {
-
     public class Game1 : Game
     {
         private float ballsX;
@@ -23,13 +23,10 @@ namespace TestGame
             Content.RootDirectory = "Content";
             base.IsMouseVisible = true;
             base.IsFixedTimeStep = true;
-
         }
-
 
         protected override void Initialize()
         {
-
             base.Initialize();
         }
 
@@ -97,7 +94,7 @@ namespace TestGame
 
 
             foreach (var sprite in _sprites)
-                sprite.Draw(spriteBatch);
+            sprite.Draw(spriteBatch);
             spriteBatch.End();
             base.Draw(gameTime);
         }

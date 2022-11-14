@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
@@ -23,8 +22,6 @@ namespace TestGame.Sprites
         public override void Update(GameTime gameTime, List<GameObject> sprites)
         {
             Move();
-
-
 
             foreach (var sprite in sprites)
             {

@@ -1,14 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-
 using MonoGame.Extended;
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using TestGame.Models;
 using TestGame.Physics;
 
@@ -41,6 +38,7 @@ namespace TestGame.Sprites
 
         public virtual void Update(GameTime gameTime, List<GameObject> sprites)
         {
+
         }
 
         public virtual void Move(GameTime gameTime)
