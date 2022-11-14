@@ -5,9 +5,35 @@ namespace TestGame.Models
 {
     internal class Collider
     {
+        private readonly List<GameObject> _gameObjects = new();
+
+        public Collider(List<GameObject> gameObjects)
+        {
+            _gameObjects = gameObjects;
+        }
+
+        public Collider()
+        {
+
+        }
+
         public bool IsTouching(GameObject self, GameObject gameObject) => GetTouchingDirections(self, gameObject).Any();
 
-        public IEnumerable<Direction> GetTouchingDirections(GameObject self, GameObject other)
+        public IEnumerable<Direction> GetTouchingDirections(GameObject self)
+        {
+            var list = new List<Direction>();
+            if(_gameObjects.Any())
+            {
+                foreach(var gameObject in _gameObjects)
+                {
+                    var directions = GetTouchingDirections(self, gameObject);
+                    list.AddRange(directions);
+                }
+            }
+            return list;
+        }
+        
+            public IEnumerable<Direction> GetTouchingDirections(GameObject self, GameObject other)
         {
             var directions = new List<Direction>();
             

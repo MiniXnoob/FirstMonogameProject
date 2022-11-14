@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TestGame.Models;
 using TestGame.Physics;
+using TestGame.Sprites;
 
 namespace TestGame.Sprites
 {
@@ -31,6 +32,12 @@ namespace TestGame.Sprites
             {
                 return new Rectangle((int)Position.X, (int)Position.Y, _texture.Width, _texture.Height);
             }
+        }
+
+        public GameObject(Texture2D texture, List<GameObject> gameObjects)
+        {
+            _texture = texture;
+            _collider = new Collider(gameObjects);
         }
 
         public GameObject(Texture2D texture)
@@ -57,13 +64,14 @@ namespace TestGame.Sprites
 
             var accelleration = gravity * 0.5f;
 
-            if (UseGravity)
+            if (UseGravity && !IsTouchingBottom())
             {
                 Velocity.Y = accelleration;
                 //Velocity.X = Euler.ExplicitEuler(1, 1, (float)gameTime.TotalGameTime.TotalSeconds);
 
                 Position += Velocity;
-                Console.WriteLine(dt);
+                //Console.WriteLine(dt);
+                //Console.WriteLine(onGround);
 
             }
         }
@@ -77,5 +85,7 @@ namespace TestGame.Sprites
         protected bool IsTouchingTop(GameObject sprite) => _collider.IsTouchingTop(this, sprite);
 
         protected bool IsTouchingBottom(GameObject sprite) => _collider.IsTouchingBottom(this, sprite);
+        
+        protected bool IsTouchingBottom() => _collider.GetTouchingDirections(this).Any(x => x == Direction.Bottom);
     }
 }
