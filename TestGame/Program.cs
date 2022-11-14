@@ -1,5 +1,4 @@
 using System;
-
 using TestGame;
 using TestGame.Physics;
 
@@ -10,7 +9,7 @@ namespace TestGame
         [STAThread]
         static void Main()
         {
-            Console.WriteLine(Euler.ExplicitEulerX(1, 5));
+            Console.WriteLine(Euler.ExplicitEuler(1, 5));
             using (var game = new Game1())
                 game.Run();
         }

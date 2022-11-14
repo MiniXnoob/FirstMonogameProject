@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-
 using TestGame.Sprites;
 
 namespace TestGame.Models
