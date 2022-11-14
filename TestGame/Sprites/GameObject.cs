@@ -86,6 +86,6 @@ namespace TestGame.Sprites
 
         protected bool IsTouchingBottom(GameObject sprite) => _collider.IsTouchingBottom(this, sprite);
         
-        protected bool IsTouchingBottom() => _collider.GetTouchingDirections(this).Any(x => x == Direction.Bottom);
+        protected bool IsTouchingBottom() => _collider.GetTouchingDirections(this).Any(x => x == Direction.Top);
     }
 }
