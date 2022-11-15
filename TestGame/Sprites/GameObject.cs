@@ -1,15 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+
 using MonoGame.Extended;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+
 using TestGame.Models;
-using TestGame.Physics;
-using TestGame.Sprites;
 
 namespace TestGame.Sprites
 {
@@ -67,11 +61,13 @@ namespace TestGame.Sprites
 
             if (UseGravity)
             {
+
+                var currentVelocity = Velocity;
                 if (!IsTouchingBottom())
 
                 {
                     Velocity.Y += accelleration;
-                    
+
                     //Velocity.X = Euler.ExplicitEuler(1, 1, (float)gameTime.TotalGameTime.TotalSeconds);
 
 
@@ -85,9 +81,30 @@ namespace TestGame.Sprites
                     //Velocity.Y = accelleration;
                     //Position += Velocity;
                     Velocity.Y = Velocity.Y * -1 * 0.85f;
-                    
+
                 }
-    
+
+
+                var diff = Velocity - currentVelocity;
+
+                if (MathF.Abs(diff.X) < 0.1f && MathF.Abs(diff.X) > -0.1f)
+                {
+                    Velocity.X = 0f;
+                }
+                else
+                {
+                    //Position.X += Velocity.X;
+                }
+
+                if (MathF.Abs(diff.Y) < 0.1f && MathF.Abs(diff.Y) > -0.1f)
+                {
+                    Velocity.Y = 0f;
+                }
+                else
+                {
+                    //Position.Y += Velocity.Y;
+                }
+
                 Position += Velocity;
             }
 
@@ -103,7 +120,7 @@ namespace TestGame.Sprites
         protected bool IsTouchingTop(GameObject sprite) => _collider.IsTouchingTop(this, sprite);
 
         protected bool IsTouchingBottom(GameObject sprite) => _collider.IsTouchingBottom(this, sprite);
-        
+
         protected bool IsTouchingBottom() => _collider.GetTouchingDirections(this).Any(x => x == Direction.Top);
     }
 }
