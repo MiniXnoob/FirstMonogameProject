@@ -1,6 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+
+using MonoGame.Extended.Sprites;
+
 using System.Collections.Generic;
 using TestGame.Models;
 using TestGame.Sprites;
@@ -11,6 +14,11 @@ namespace TestGame
     {
         private float ballsX;
         private float ballsY;
+        private int _height = 1080;
+        private int _width = 1920;
+        Random r = new Random();
+        private int potato = 20;
+        private int smallPotato = 9;
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -20,9 +28,12 @@ namespace TestGame
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
+            graphics.IsFullScreen = true;
+            graphics.PreferredBackBufferHeight = _height;
+            graphics.PreferredBackBufferWidth = _width;
             Content.RootDirectory = "Content";
             base.IsMouseVisible = true;
-            base.IsFixedTimeStep = true;
+            base.IsFixedTimeStep = false;
         }
 
         protected override void Initialize()
@@ -35,51 +46,70 @@ namespace TestGame
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             var playerTexture = Content.Load<Texture2D>("Block");
-            var ballTexture = Content.Load<Texture2D>("StianPexel");
-            var groundTexture = Content.Load<Texture2D>("Cross Screen obstacle");
-            var walllTexture = Content.Load<Texture2D>("Longstaclewall");
+            var sBallTexture = Content.Load<Texture2D>("StianPexel");
+            var sPBallTexture = Content.Load<Texture2D>("StianpPexel");
+            var kBallTexture = Content.Load<Texture2D>("KristerPexel");
+            var bBallTexture = Content.Load<Texture2D>("BenjaminPexel");
+            var groundTexture = Content.Load<Texture2D>("GroundLongstcle");
+            var walllTexture = Content.Load<Texture2D>("WallLongstcle");
             var font = Content.Load<SpriteFont>("Consolas16");
 
             _sprites = new List<GameObject>()
               {
-                new Player(playerTexture)
+                new Ground(groundTexture)
                 {
-                    Position = new Vector2(0, 790) 
-                    
+                    Position = new Vector2(0, 0)
                 },
-                new Player(playerTexture)
+                new Ground(groundTexture)
                 {
-                    Position = new Vector2(40, 790)
+                    Position = new Vector2(0, _height - 10)
                 },
-                new Player(playerTexture)
-                {
-                    Position = new Vector2(80, 790)
-                },
-                new Player(playerTexture)
-                {
-                    Position = new Vector2(120, 790)
-                },
-                new Player(playerTexture)
-                {
-                    Position = new Vector2(160, 790)
-                },
-                new Ground(groundTexture),
                 new Walll(walllTexture)
                 {
                     Position = new Vector2(0, 0),
                 },
                 new Walll(walllTexture)
                 {
-                    Position = new Vector2(790, 0)
+                    Position = new Vector2(_width - 10, 0)
                 }
 
                 
           };
-            _sprites.Add(new Ball(ballTexture, _sprites)
+            _sprites.Add(new Ball(sBallTexture, _sprites)
             {
                 UseGravity = true,
-                Position = new Vector2(100, 100),
+                Position = new Vector2((r.Next(10, _width - 20)), (r.Next(10, _height - 20))),
+                Velocity = new Vector2((r.Next(smallPotato, potato)), 0.001f)
+                //Colour = Color.Aqua,
             });
+            _sprites.Add(new Ball(kBallTexture, _sprites)
+            {
+                UseGravity = true,
+                Position = new Vector2((r.Next(10, _width - 20)), (r.Next(10, _height - 20))),
+                Velocity = new Vector2((r.Next(smallPotato, potato)), 0.001f)
+                //Colour = Color.Orange,
+            });
+            _sprites.Add(new Ball(bBallTexture, _sprites)
+            {
+                UseGravity = true,
+                Position = new Vector2((r.Next(10, _width - 20)), (r.Next(10, _height - 20))),
+                Velocity = new Vector2((r.Next(smallPotato, potato)), 0.001f)
+                //Colour = Color.Red,
+            });
+            //_sprites.Add(new Ball(sBallTexture, _sprites)
+            //{
+            //    UseGravity = true,
+            //    Position = new Vector2((r.Next(10, _width - 20)), (r.Next(10, _height - 20))),
+            //    Colour = Color.Green,
+            //});
+            _sprites.Add(new Ball(sPBallTexture, _sprites)
+            {
+                UseGravity = true,
+                Position = new Vector2((r.Next(10, _width - 20)), (r.Next(10, _height - 20))),
+                Velocity = new Vector2((r.Next(smallPotato, potato)), 0.001f)
+                //Colour = Color.Yellow,
+            });
+
         }
 
         protected override void UnloadContent()
@@ -102,7 +132,6 @@ namespace TestGame
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin();
-
 
             foreach (var sprite in _sprites)
             sprite.Draw(spriteBatch);

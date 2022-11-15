@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -22,7 +23,7 @@ namespace TestGame.Sprites
         private readonly Collider _collider = new();
 
         public Vector2 Position = new();
-        public Vector2 Velocity = new(0, 0.001f);
+        public Vector2 Velocity = new(10, 0.001f);
         public Color Colour = Color.White;
         public float Speed;
         public Input Input;
@@ -57,7 +58,7 @@ namespace TestGame.Sprites
         {
 
         }
-
+        
         public virtual void Gravity(GameTime gameTime)
         {
             var dt = (float)gameTime.GetElapsedSeconds();
@@ -65,21 +66,27 @@ namespace TestGame.Sprites
             var g = 9.81f;
             var gravity = mass * g;
             var accelleration = gravity * dt;
+            
 
             if (UseGravity)
             {
                 if (!IsTouchingBottom())
                     Velocity.Y += accelleration;
                 else if (IsTouchingBottom())
-                    Velocity.Y = Velocity.Y * -1 * 0.85f;
-                if (!IsTouchingRight())
-                     Velocity.X += accelleration;
-                else if (IsTouchingRight())
-                    Velocity.X = Velocity.X * -1 * 0.85f;
-                if (!IsTouchingLeft())
-                    Velocity.X += accelleration;
-                else if (IsTouchingLeft())
-                    Velocity.X = Velocity.X * 1 * 0.85f;
+                    Velocity.Y = Velocity.Y * -1 * 0.99f;
+
+                if (IsTouchingRight())
+                {
+                    Velocity.X = Velocity.X * -1 * 0.99f;
+                    gravity *= -1;
+                }
+              
+               
+                if (IsTouchingLeft())
+                {
+                    Velocity.X = Velocity.X * 1 * 0.99f;
+                    gravity *= -1;
+                }
                  
 
                 Position += Velocity;
@@ -87,7 +94,9 @@ namespace TestGame.Sprites
 
             if (Keyboard.GetState().IsKeyDown(Keys.O))
                 Velocity.Y = 0f;
-            Console.WriteLine(Velocity.Y);
+            //Console.WriteLine(Velocity.Y);
+            Console.WriteLine(Velocity.X);
+
         }
 
         public virtual void Draw(SpriteBatch spriteBatch) => spriteBatch.Draw(_texture, Position, Colour);

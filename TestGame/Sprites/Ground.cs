@@ -8,7 +8,7 @@ namespace TestGame.Sprites
     {
         public Ground(Texture2D texture) : base(texture)
         {
-            Bounds = new Size2(800, 10);
+            Bounds = new Size2(2560, 10);
             Colour = Color.White;
             Position = new Vector2(0, 450);
         }

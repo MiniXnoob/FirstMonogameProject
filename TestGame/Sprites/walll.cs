@@ -8,7 +8,7 @@ namespace TestGame.Sprites
     {
         public Walll(Texture2D texture) : base(texture)
         {
-            Bounds = new Size2(10, 800);
+            Bounds = new Size2(10, 1440);
             Colour = Color.White;
             Position = new Vector2(0, 450);
         }
