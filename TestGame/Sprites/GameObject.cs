@@ -28,7 +28,8 @@ namespace TestGame.Sprites
         public float Speed = 5f;
 
         [JsonIgnore] public Rectangle? RectangleCollider { get; set; }
-        public List<Collision> Collisions { get; } = new List<Collision>();
+        //[JsonIgnore] public Rect? RectangleCollider { get; set; }
+        public List<Rectangle> Collisions { get; } = new();
 
         public void Update(GameTime gameTime)
         {

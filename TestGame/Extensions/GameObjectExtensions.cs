@@ -13,43 +13,22 @@ namespace TestGame.Extensions
     {
         public static void Smooth(this GameObject gameObject)
         {
-            if (gameObject.Velocity.X < 0.001f && gameObject.Velocity.X > -0.001f)
-            {
-                gameObject.Velocity.X = 0f;
-            }
-
-            if (gameObject.Velocity.Y < 0.001f && gameObject.Velocity.Y > -0.001f)
-            {
-                gameObject.Velocity.Y = 0f;
-            }
+            if (gameObject.Velocity.X is < 0.001f and > -0.001f) gameObject.Velocity.X = 0f;
+            if (gameObject.Velocity.Y is < 0.001f and > -0.001f) gameObject.Velocity.Y = 0f;
         }
 
         public static void ApplyGravity(this GameObject gameObject, GameTime gameTime)
         {
             if (!gameObject.UseGravity) return;
-            var dt = gameTime.GetElapsedSeconds();
-            var gravity = gameObject.Mass * -PhysicsHelper.G;
-            var accelleration = gravity * dt;
-            var accellerationVector = new Vector2(0, accelleration);
-            gameObject.Velocity += accellerationVector;
+            var acceleration = gameObject.GetGravityAcceleration() * gameTime.GetElapsedSeconds();
+            gameObject.Velocity += new Vector2(0, acceleration);
         }
 
-        //public static void Reverse(this GameObject gameObject, Direction direction)
-        //{
+        public static void ReverseX(this GameObject gameObject) => gameObject.Velocity.X *= -1;
 
+        public static void ReverseY(this GameObject gameObject) => gameObject.Velocity.Y *= -1;
 
-        //    gameObject.ReverseX();
-        //    gameObject.ReverseY();
-        //}
-
-        public static void ReverseX(this GameObject gameObject)
-        {
-            gameObject.Velocity.X *= -1;
-        }
-        public static void ReverseY(this GameObject gameObject)
-        {
-            gameObject.Velocity.Y *= -1;
-        }
+        public static float GetGravityAcceleration(this GameObject gameObject) => gameObject.Mass * -PhysicsHelper.G;
 
         public static void Bounce(this GameObject gameObject, Direction direction)
         {
@@ -66,33 +45,23 @@ namespace TestGame.Extensions
             gameObject.Velocity *= gameObject.Bouncyness;
         }
 
-        //public static void Bounce(this GameObject gameObject)
-        //{
-        //    gameObject.Reverse();
-        //    gameObject.Velocity *= gameObject.Bouncyness;
-        //}
-
         public static void Collide(this GameObject gameObject)
         {
             if (gameObject.Velocity.X > 0 && gameObject.IsColliding(Direction.Right))
             {
                 gameObject.Bounce(Direction.Right);
-                //gameObject.Velocity.X = 0;
             }
             if (gameObject.Velocity.X < 0 && gameObject.IsColliding(Direction.Left))
             {
                 gameObject.Bounce(Direction.Left);
-                //gameObject.Velocity.X = 0;
             }
             if (gameObject.Velocity.Y > 0 && gameObject.IsColliding(Direction.Top))
             {
                 gameObject.Bounce(Direction.Top);
-                //gameObject.Velocity.Y = 0;
             }
             if (gameObject.Velocity.Y > 0 && gameObject.IsColliding(Direction.Bottom))
             {
                 gameObject.Bounce(Direction.Bottom);
-                //gameObject.Velocity.Y = 0;
             }
         }
 
@@ -152,12 +121,7 @@ namespace TestGame.Extensions
             self.Collisions.AddRange(collisons);
         }
 
-        public static IEnumerable<Collision> GetCollisions(this GameObject self, GameObjectsList gameObjects) => gameObjects.GetCollisions(self);
-
         public static bool IsColliding(this GameObject self, Direction direction) => self.GetTouchingDirections().Any(x => x == direction);
-        public static bool IsColliding(this GameObject self) => self.Collisions.Any();
-
-        public static bool IsColliding(this GameObject self, GameObject other) => IsTouching(self, other);
 
         public static IEnumerable<Direction> GetTouchingDirections(this GameObject self)
         {

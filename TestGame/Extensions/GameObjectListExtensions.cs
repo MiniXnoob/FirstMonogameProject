@@ -13,7 +13,6 @@ public static class GameObjectListExtensions
         foreach (GameObject gameObject in gameObjectsList)
         {
             gameObject.SetCollisions(gameObjectsList);
-
             gameObject.Update(gameTime);
         }
     }
@@ -25,6 +24,8 @@ public static class GameObjectListExtensions
             spriteBatch.Draw(gameObject);
         }
     }
+
+    public static IEnumerable<Rectangle> GetCollidingRectangles(this GameObjectsList gameObjectsList, GameObject self) => (from otherGameObject in gameObjectsList where self.RectangleCollider.HasValue && otherGameObject.RectangleCollider.HasValue && self.RectangleCollider.Value.Intersects(otherGameObject.RectangleCollider.Value) select otherGameObject.RectangleCollider!.Value).ToList();
 
     public static IEnumerable<Collision> GetCollisions(this GameObjectsList gameObjectsList, GameObject self)
     {
@@ -42,27 +43,4 @@ public static class GameObjectListExtensions
     {
         return gameObjectsList.GetCollisions(self).SelectMany(y => y.GetCollidingDirections()).Contains(direction);
     }
-
-    //public static void ApplyGravity(this GameObjectsList gameObjectsList, GameTime gameTime)
-    //{
-    //    foreach (GameObject gameObject in gameObjectsList)
-    //    {
-    //        if (!gameObject.UseGravity) continue;
-
-    //        if (gameObjectsList.IsColliding(gameObject, Direction.Top))
-    //        {
-    //            gameObject.Bounce();
-    //        }
-    //        else
-    //        {
-    //            gameObject.ApplyGravity(gameTime);
-    //        }
-
-    //var dt = gameTime.GetElapsedSeconds();
-    //var gravity = gameObject.Mass * -PhysicsHelper.G;
-    //var accelleration = gravity * dt;
-    //var accellerationVector = new Vector2(0, accelleration);
-    //gameObject.Velocity += accellerationVector;
-    //    }
-    //}
 }

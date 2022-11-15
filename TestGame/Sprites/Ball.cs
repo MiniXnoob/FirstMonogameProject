@@ -26,7 +26,7 @@ namespace TestGame.Sprites
             }));
             KeyboardActions.Add(new KeyboardAction(Keys.NumPad4, () =>
             {
-                this.AddForce(Vector2.UnitX * -1);
+                this.AddForce(Vector2.UnitY * -1);
             }));
             KeyboardActions.Add(new KeyboardAction(Keys.NumPad6, () =>
             {
