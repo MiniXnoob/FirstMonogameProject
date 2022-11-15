@@ -24,11 +24,11 @@ public static class SpriteBatchExtensions
     {
         if (gameObject.Texture != null)
         {
-            spriteBatch.Draw(gameObject.Texture, gameObject.Position, gameObject.Colour);
+            spriteBatch.Draw(gameObject.Texture, gameObject.Position, gameObject.Color);
         }
         else if (gameObject.RectangleCollider != null)
         {
-            spriteBatch.DrawRectangle(gameObject.RectangleCollider.Value, gameObject.Colour);
+            spriteBatch.DrawRectangle(gameObject.RectangleCollider.Value, gameObject.Color);
         }
     }
 }

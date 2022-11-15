@@ -1,9 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-using MonoGame.Extended;
-
-using TestGame.Helpers;
 using TestGame.Models;
 using TestGame.Sprites;
 
@@ -13,8 +10,12 @@ public static class GameObjectListExtensions
 {
     public static void Update(this GameObjectsList gameObjectsList, GameTime gameTime)
     {
-        gameObjectsList.ApplyGravity(gameTime);
-        foreach (GameObject gameObject in gameObjectsList) gameObject.Update(gameTime);
+        foreach (GameObject gameObject in gameObjectsList)
+        {
+            gameObject.SetCollisions(gameObjectsList);
+
+            gameObject.Update(gameTime);
+        }
     }
 
     public static void Draw(this GameObjectsList gameObjectsList, SpriteBatch spriteBatch)
@@ -42,22 +43,26 @@ public static class GameObjectListExtensions
         return gameObjectsList.GetCollisions(self).SelectMany(y => y.GetCollidingDirections()).Contains(direction);
     }
 
-    public static void ApplyGravity(this GameObjectsList gameObjectsList, GameTime gameTime)
-    {
-        foreach (GameObject gameObject in gameObjectsList)
-        {
-            if (!gameObject.UseGravity) continue;
+    //public static void ApplyGravity(this GameObjectsList gameObjectsList, GameTime gameTime)
+    //{
+    //    foreach (GameObject gameObject in gameObjectsList)
+    //    {
+    //        if (!gameObject.UseGravity) continue;
 
-            if (gameObjectsList.IsColliding(gameObject, Direction.Bottom))
-            {
-                continue;
-            }
+    //        if (gameObjectsList.IsColliding(gameObject, Direction.Top))
+    //        {
+    //            gameObject.Bounce();
+    //        }
+    //        else
+    //        {
+    //            gameObject.ApplyGravity(gameTime);
+    //        }
 
-            var dt = gameTime.GetElapsedSeconds();
-            var gravity = gameObject.Mass * -PhysicsHelper.G;
-            var accelleration = gravity * dt;
-            var accellerationVector = new Vector2(0, accelleration);
-            gameObject.Accellerate(accellerationVector);
-        }
-    }
+    //var dt = gameTime.GetElapsedSeconds();
+    //var gravity = gameObject.Mass * -PhysicsHelper.G;
+    //var accelleration = gravity * dt;
+    //var accellerationVector = new Vector2(0, accelleration);
+    //gameObject.Velocity += accellerationVector;
+    //    }
+    //}
 }

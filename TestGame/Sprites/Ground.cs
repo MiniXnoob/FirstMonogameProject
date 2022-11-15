@@ -18,7 +18,10 @@ namespace TestGame.Sprites
 
         public static Ground Default(Texture2D? texture) => new()
         {
-            Colour = Color.White, Position = new Vector2(0, 450), Texture = texture, RectangleCollider = new Rectangle(new Point(0, 450), new Point(800, 10)),
+            Color = Color.White,
+            Position = new Vector2(0, 450),
+            Texture = texture,
+            RectangleCollider = new Rectangle(new Point(0, 450), new Point(800, 10)),
         };
     }
 }

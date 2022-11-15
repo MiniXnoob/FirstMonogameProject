@@ -11,10 +11,7 @@ namespace TestGame.Sprites
         public static Player One(Texture2D? texture) => new Player()
         {
             Texture = texture,
-            Input = new Input()
-            {
-                Left = Keys.A, Right = Keys.D, Up = Keys.W, Down = Keys.S,
-            },
+            RectangleCollider = Rectangle.Empty,
             Position = new Vector2(300, 400),
             Speed = 5,
         };
@@ -22,12 +19,16 @@ namespace TestGame.Sprites
         public static Player Two(Texture2D? texture) => new()
         {
             Texture = texture,
+            RectangleCollider = Rectangle.Empty,
             Input = new Input()
             {
-                Left = Keys.Left, Right = Keys.Right, Up = Keys.Up, Down = Keys.Down,
+                Left = Keys.Left,
+                Right = Keys.Right,
+                Up = Keys.Up,
+                Down = Keys.Down,
             },
             Position = new Vector2(400, 400),
-            Colour = Color.Blue,
+            Color = Color.Blue,
             Speed = 5,
         };
     }

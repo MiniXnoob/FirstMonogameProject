@@ -20,7 +20,7 @@ namespace TestGame
             _gameObjects = new GameObjectsList();
             Content.RootDirectory = "Content";
             base.IsMouseVisible = true;
-            base.IsFixedTimeStep = true;
+            base.IsFixedTimeStep = false;
         }
 
         protected override void LoadContent()

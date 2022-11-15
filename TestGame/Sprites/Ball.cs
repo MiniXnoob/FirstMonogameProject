@@ -20,8 +20,34 @@ namespace TestGame.Sprites
             {
                 Console.WriteLine(RectangleCollider);
             }));
+            KeyboardActions.Add(new KeyboardAction(Keys.NumPad8, () =>
+            {
+                this.AddForce(Vector2.UnitY);
+            }));
+            KeyboardActions.Add(new KeyboardAction(Keys.NumPad4, () =>
+            {
+                this.AddForce(Vector2.UnitX * -1);
+            }));
+            KeyboardActions.Add(new KeyboardAction(Keys.NumPad6, () =>
+            {
+                this.AddForce(Vector2.UnitX);
+            }));
         }
 
-        public static Ball Default(Texture2D? texture) => new() { Texture = texture, UseGravity = true, Position = new Vector2(100, 100), RectangleCollider = texture?.GetRectangleCollider(new Vector2(100, 100)) };
+        public static Ball Default(Texture2D? texture) => new()
+        {
+            Texture = texture,
+            UseGravity = true,
+            Bouncyness = 0.85f,
+            Input = new Input()
+            {
+                Left = Keys.A,
+                Right = Keys.D,
+                Up = Keys.W,
+                Down = Keys.S,
+            },
+            Position = new Vector2(100, 100),
+            RectangleCollider = texture?.GetRectangleCollider(new Vector2(100, 100))
+        };
     }
 }
