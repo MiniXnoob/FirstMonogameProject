@@ -35,46 +35,44 @@ namespace TestGame
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             var playerTexture = Content.Load<Texture2D>("Block");
-            var ballTexture = Content.Load<Texture2D>("smileball");
+            var ballTexture = Content.Load<Texture2D>("StianPexel");
             var groundTexture = Content.Load<Texture2D>("Cross Screen obstacle");
+            var walllTexture = Content.Load<Texture2D>("Longstaclewall");
             var font = Content.Load<SpriteFont>("Consolas16");
 
             _sprites = new List<GameObject>()
               {
+                new Player(playerTexture)
+                {
+                    Position = new Vector2(0, 790) 
+                    
+                },
+                new Player(playerTexture)
+                {
+                    Position = new Vector2(40, 790)
+                },
+                new Player(playerTexture)
+                {
+                    Position = new Vector2(80, 790)
+                },
+                new Player(playerTexture)
+                {
+                    Position = new Vector2(120, 790)
+                },
+                new Player(playerTexture)
+                {
+                    Position = new Vector2(160, 790)
+                },
                 new Ground(groundTexture),
-                new Walll(groundTexture)
+                new Walll(walllTexture)
                 {
                     Position = new Vector2(0, 0),
                 },
-                new Walll(groundTexture)
+                new Walll(walllTexture)
                 {
                     Position = new Vector2(790, 0)
                 }
-                //new Player(playerTexture)
-                //{
-                //  Input = new Input()
-                //  {
-                //    Left = Keys.A,
-                //    Right = Keys.D,
-                //    Up = Keys.W,
-                //    Down = Keys.S,
-                //  },
-                //  Position = new Vector2(300, 400),
-                //  Speed = 5,
-                //},
-                //new Player(playerTexture)
-                //{
-                //  Input = new Input()
-                //  {
-                //    Left = Keys.Left,
-                //    Right = Keys.Right,
-                //    Up = Keys.Up,
-                //    Down = Keys.Down,
-                //  },
-                //  Position = new Vector2(400, 400),
-                //  Colour = Color.Blue,
-                //  Speed = 5,
-                //}
+
                 
           };
             _sprites.Add(new Ball(ballTexture, _sprites)

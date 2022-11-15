@@ -51,6 +51,18 @@
 /processorParam:TextureFormat=Color
 /build:Cross screen obstacle.png
 
+#begin Longstaclewall.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Longstaclewall.png
+
 #begin monogame1.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -98,4 +110,16 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:smileball.png
+
+#begin StianPexel.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:StianPexel.png
 

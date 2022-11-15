@@ -1,5 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+
 using MonoGame.Extended;
 using System;
 using System.Collections.Generic;
@@ -67,43 +69,24 @@ namespace TestGame.Sprites
             if (UseGravity)
             {
                 if (!IsTouchingBottom())
-
-                {
                     Velocity.Y += accelleration;
-                    //Velocity.X = Euler.ExplicitEuler(1, 1, (float)gameTime.TotalGameTime.TotalSeconds);
-
-
-                    //Console.WriteLine(onGround);
-
-                }
                 else if (IsTouchingBottom())
-                {
-                    //var reverseVelocity = accelleration * -1;
-                    //accelleration = reverseVelocity * 0.8f;
-                    //Velocity.Y = accelleration;
-                    //Position += Velocity;
                     Velocity.Y = Velocity.Y * -1 * 0.85f;
                 if (!IsTouchingRight())
-                    {
-                        Velocity.X += accelleration;
-                    }
+                     Velocity.X += accelleration;
                 else if (IsTouchingRight())
-                    {
-                        Velocity.X = Velocity.X * -1 * 0.85f;
-                    }
-                    if (!IsTouchingLeft())
-                    {
-                        Velocity.X += accelleration;
-                    }
-                    else if (IsTouchingLeft())
-                    {
-                        Velocity.X = Velocity.X * 1 * 0.85f;
-                    }
-                }
+                    Velocity.X = Velocity.X * -1 * 0.85f;
+                if (!IsTouchingLeft())
+                    Velocity.X += accelleration;
+                else if (IsTouchingLeft())
+                    Velocity.X = Velocity.X * 1 * 0.85f;
+                 
 
                 Position += Velocity;
             }
 
+            if (Keyboard.GetState().IsKeyDown(Keys.O))
+                Velocity.Y = 0f;
             Console.WriteLine(Velocity.Y);
         }
 
@@ -118,8 +101,8 @@ namespace TestGame.Sprites
         protected bool IsTouchingBottom(GameObject sprite) => _collider.IsTouchingBottom(this, sprite);
         
         protected bool IsTouchingBottom() => _collider.GetTouchingDirections(this).Any(x => x == Direction.Top);
-        protected bool IsTouchingLeft() => _collider.GetTouchingDirections(this).Any(x => x == Direction.Right);
-        protected bool IsTouchingRight() => _collider.GetTouchingDirections(this).Any(x => x == Direction.Left);
+        protected bool IsTouchingLeft() => _collider.GetTouchingDirections(this).Any(x => x == Direction.Left);
+        protected bool IsTouchingRight() => _collider.GetTouchingDirections(this).Any(x => x == Direction.Right);
 
     }
 }
