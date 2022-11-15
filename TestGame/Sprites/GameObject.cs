@@ -4,6 +4,7 @@ using MonoGame.Extended;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using TestGame.Models;
@@ -23,6 +24,7 @@ namespace TestGame.Sprites
         public Color Colour = Color.White;
         public float Speed;
         public Input Input;
+        private bool wasOnGround = false;
 
         public bool UseGravity { get; set; }
 
@@ -57,24 +59,39 @@ namespace TestGame.Sprites
 
         public virtual void Gravity(GameTime gameTime)
         {
-            var dt = (float)gameTime.TotalGameTime.TotalSeconds;
+            var dt = (float)gameTime.GetElapsedSeconds();
             var mass = 1f;
             var g = 9.81f;
             var gravity = mass * g;
+            var accelleration = gravity * dt;
 
-            var accelleration = gravity * 0.5f;
-
-            if (UseGravity && !IsTouchingBottom())
+            if (UseGravity)
             {
-                Velocity.Y = accelleration;
-                //Velocity.X = Euler.ExplicitEuler(1, 1, (float)gameTime.TotalGameTime.TotalSeconds);
+                if (!IsTouchingBottom())
 
+                {
+                    Velocity.Y += accelleration;
+                    
+                    //Velocity.X = Euler.ExplicitEuler(1, 1, (float)gameTime.TotalGameTime.TotalSeconds);
+
+
+                    //Console.WriteLine(onGround);
+
+                }
+                else if (IsTouchingBottom())
+                {
+                    //var reverseVelocity = accelleration * -1;
+                    //accelleration = reverseVelocity * 0.8f;
+                    //Velocity.Y = accelleration;
+                    //Position += Velocity;
+                    Velocity.Y = Velocity.Y * -1 * 0.85f;
+                    
+                }
+    
                 Position += Velocity;
-                //Console.WriteLine(dt);
-                //Console.WriteLine(onGround);
-
             }
 
+            Console.WriteLine(Velocity.Y);
         }
 
         public virtual void Draw(SpriteBatch spriteBatch) => spriteBatch.Draw(_texture, Position, Colour);
