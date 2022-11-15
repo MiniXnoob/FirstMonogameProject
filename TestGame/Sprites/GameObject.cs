@@ -90,7 +90,7 @@ namespace TestGame.Sprites
     
                 Position += Velocity;
             }
-
+            if (accelleration <= 0.0004 && accelleration >= -0.0004)
             Console.WriteLine(Velocity.Y);
         }
 
