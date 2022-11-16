@@ -67,29 +67,21 @@ namespace TestGame.Sprites
             var gravity = mass * g;
             var accelleration = gravity * dt;
             
-
+            
             if (UseGravity)
             {
                 if (!IsTouchingBottom())
                     Velocity.Y += accelleration;
                 else if (IsTouchingBottom())
-                    Velocity.Y = Velocity.Y * -1 * 0.99f;
-
-                if (IsTouchingRight())
+                    Velocity.Y = Velocity.Y * -1 * 1.0f;
+                if (IsTouchingRight() || IsTouchingLeft())
                 {
-                    Velocity.X = Velocity.X * -1 * 0.99f;
-                    gravity *= -1;
+                    Velocity.X = Velocity.X * -1 * 1.0f;
+                    
                 }
-              
-               
-                if (IsTouchingLeft())
-                {
-                    Velocity.X = Velocity.X * 1 * 0.99f;
-                    gravity *= -1;
-                }
-                 
-
-                Position += Velocity;
+                
+                
+              Position += Velocity;
             }
 
             if (Keyboard.GetState().IsKeyDown(Keys.O))
@@ -112,6 +104,7 @@ namespace TestGame.Sprites
         protected bool IsTouchingBottom() => _collider.GetTouchingDirections(this).Any(x => x == Direction.Top);
         protected bool IsTouchingLeft() => _collider.GetTouchingDirections(this).Any(x => x == Direction.Left);
         protected bool IsTouchingRight() => _collider.GetTouchingDirections(this).Any(x => x == Direction.Right);
+        
 
     }
 }

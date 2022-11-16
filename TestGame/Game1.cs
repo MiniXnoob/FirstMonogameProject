@@ -28,7 +28,7 @@ namespace TestGame
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
-            graphics.IsFullScreen = true;
+            graphics.IsFullScreen = false;
             graphics.PreferredBackBufferHeight = _height;
             graphics.PreferredBackBufferWidth = _width;
             Content.RootDirectory = "Content";

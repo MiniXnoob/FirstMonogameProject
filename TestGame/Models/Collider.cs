@@ -72,7 +72,7 @@ namespace TestGame.Models
             self.RectangleCollider.Left < other.RectangleCollider.Right;
 
         public bool IsTouchingBottom(GameObject self, GameObject other) =>
-            self.RectangleCollider.Top + self.Velocity.Y < other.RectangleCollider.Bottom &&
+            self.RectangleCollider.Top + self.Velocity.Y < other.RectangleCollider.Bottom && 
             self.RectangleCollider.Bottom > other.RectangleCollider.Bottom &&
             self.RectangleCollider.Right > other.RectangleCollider.Left &&
             self.RectangleCollider.Left < other.RectangleCollider.Right;
