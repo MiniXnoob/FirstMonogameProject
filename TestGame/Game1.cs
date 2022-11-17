@@ -11,7 +11,7 @@ namespace TestGame
     {
         private readonly int _height = 1000;
         private readonly int _width = 1000;
-        Random r = new Random();
+        readonly Random r = new Random();
         private readonly int potato = 20;
         private readonly int smallPotato = 9;
         readonly GraphicsDeviceManager graphics;

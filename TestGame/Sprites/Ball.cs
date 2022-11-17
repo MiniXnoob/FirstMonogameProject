@@ -2,7 +2,6 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-
 namespace TestGame.Sprites
 {
   public class Ball : GameObject
@@ -23,21 +22,21 @@ namespace TestGame.Sprites
                 Position.Y = 100;
             }
 
-        foreach (var sprite in sprites)
-        {
-        if (sprite == this)
-          continue;
+            foreach (var sprite in sprites)
+            {
+                if (sprite == this)
+                  continue;
 
-            if (this.Velocity.X > 0 && this.IsTouchingLeft(sprite))
-              onGround = true;
-            if (this.Velocity.X < 0 && this.IsTouchingRight(sprite))
-              onGround = true;
-            if (this.Velocity.Y > 0 && this.IsTouchingTop(sprite))
-              onGround = true;
-            if (this.Velocity.Y < 0 && this.IsTouchingBottom(sprite))
-              onGround = true;
+                    if (this.Velocity.X > 0 && this.IsTouchingLeft(sprite))
+                      onGround = true;
+                    if (this.Velocity.X < 0 && this.IsTouchingRight(sprite))
+                      onGround = true;
+                    if (this.Velocity.Y > 0 && this.IsTouchingTop(sprite))
+                      onGround = true;
+                    if (this.Velocity.Y < 0 && this.IsTouchingBottom(sprite))
+                      onGround = true;
 
-        }
+            }
     }  
     }
   }
