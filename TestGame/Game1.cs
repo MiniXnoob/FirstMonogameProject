@@ -44,6 +44,10 @@ namespace TestGame
 
             _sprites = new List<GameObject>()
               {
+                new Player(sBallTexture)
+                {
+
+                },
                 new Ground(groundTexture)
                 {
                     Position = new Vector2(0, 0)

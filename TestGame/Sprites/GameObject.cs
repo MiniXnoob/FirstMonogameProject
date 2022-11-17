@@ -42,12 +42,10 @@ namespace TestGame.Sprites
 
         public virtual void Update(GameTime gameTime, List<GameObject> sprites)
         {
-
         }
 
         public virtual void Move(GameTime gameTime)
         {
-
         }
         
         public virtual void Gravity(GameTime gameTime)
@@ -57,7 +55,6 @@ namespace TestGame.Sprites
             var g = 9.81f;
             var gravity = mass * g;
             var accelleration = gravity * dt;
-            
             
             if (UseGravity)
             {
@@ -71,14 +68,11 @@ namespace TestGame.Sprites
                     
                 }
                 
-                
               Position += Velocity;
             }
 
             if (Keyboard.GetState().IsKeyDown(Keys.O))
                 Velocity.Y = 0f;
-            //Console.WriteLine(Velocity.Y);
-            Console.WriteLine(Velocity.X);
 
         }
 
@@ -95,7 +89,5 @@ namespace TestGame.Sprites
         protected bool IsTouchingBottom() => _collider.GetTouchingDirections(this).Any(x => x == Direction.Top);
         protected bool IsTouchingLeft() => _collider.GetTouchingDirections(this).Any(x => x == Direction.Left);
         protected bool IsTouchingRight() => _collider.GetTouchingDirections(this).Any(x => x == Direction.Right);
-        
-
     }
 }

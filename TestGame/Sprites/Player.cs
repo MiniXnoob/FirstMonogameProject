@@ -9,7 +9,6 @@ namespace TestGame.Sprites
         public Player(Texture2D texture)
           : base(texture)
         {
-
         }
 
         public override void Update(GameTime gameTime, List<GameObject> sprites)
