@@ -1,9 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-
 using MonoGame.Extended.Sprites;
-
 using System.Collections.Generic;
 using TestGame.Models;
 using TestGame.Sprites;
@@ -12,13 +10,11 @@ namespace TestGame
 {
     public class Game1 : Game
     {
-        private float ballsX;
-        private float ballsY;
         private int _height = 1080;
         private int _width = 1920;
         Random r = new Random();
-        private int potato = 20;
-        private int smallPotato = 9;
+        public int potato = 20;
+        public int smallPotato = 9;
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -80,6 +76,7 @@ namespace TestGame
                 UseGravity = true,
                 Position = new Vector2((r.Next(10, _width - 20)), (r.Next(10, _height - 20))),
                 Velocity = new Vector2((r.Next(smallPotato, potato)), 0.001f)
+
                 //Colour = Color.Aqua,
             });
             _sprites.Add(new Ball(kBallTexture, _sprites)

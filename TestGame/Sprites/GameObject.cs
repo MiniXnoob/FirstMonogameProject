@@ -86,8 +86,8 @@ namespace TestGame.Sprites
 
             if (Keyboard.GetState().IsKeyDown(Keys.O))
                 Velocity.Y = 0f;
-            //Console.WriteLine(Velocity.Y);
-            Console.WriteLine(Velocity.X);
+            Console.WriteLine("Velocity X" + Velocity.X);
+            Console.WriteLine("Velocity Y" + Velocity.Y);
 
         }
 
