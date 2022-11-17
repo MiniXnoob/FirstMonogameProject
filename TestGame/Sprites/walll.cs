@@ -4,11 +4,11 @@ using MonoGame.Extended;
 
 namespace TestGame.Sprites
 {
-    public class Ground : GameObject
+    public class Walll : GameObject
     {
-        public Ground(Texture2D texture) : base(texture)
+        public Walll(Texture2D texture) : base(texture)
         {
-            Bounds = new Size2(2560, 10);
+            Bounds = new Size2(10, 1440);
             Colour = Color.White;
             Position = new Vector2(0, 450);
         }

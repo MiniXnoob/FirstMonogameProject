@@ -1,8 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+
 using MonoGame.Extended;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -20,11 +23,10 @@ namespace TestGame.Sprites
         private readonly Collider _collider = new();
 
         public Vector2 Position = new();
-        public Vector2 Velocity = new(0, 0.001f);
+        public Vector2 Velocity = new(10, 0.001f);
         public Color Colour = Color.White;
         public float Speed;
         public Input Input;
-        private bool wasOnGround = false;
 
         public bool UseGravity { get; set; }
 
@@ -56,7 +58,7 @@ namespace TestGame.Sprites
         {
 
         }
-
+        
         public virtual void Gravity(GameTime gameTime)
         {
             var dt = (float)gameTime.GetElapsedSeconds();
@@ -64,34 +66,29 @@ namespace TestGame.Sprites
             var g = 9.81f;
             var gravity = mass * g;
             var accelleration = gravity * dt;
-
+            
+            
             if (UseGravity)
             {
                 if (!IsTouchingBottom())
-
-                {
                     Velocity.Y += accelleration;
-                    
-                    //Velocity.X = Euler.ExplicitEuler(1, 1, (float)gameTime.TotalGameTime.TotalSeconds);
-
-
-                    //Console.WriteLine(onGround);
-
-                }
                 else if (IsTouchingBottom())
+                    Velocity.Y = Velocity.Y * -1 * 1.0f;
+                if (IsTouchingRight() || IsTouchingLeft())
                 {
-                    //var reverseVelocity = accelleration * -1;
-                    //accelleration = reverseVelocity * 0.8f;
-                    //Velocity.Y = accelleration;
-                    //Position += Velocity;
-                    Velocity.Y = Velocity.Y * -1 * 0.85f;
+                    Velocity.X = Velocity.X * -1 * 1.0f;
                     
                 }
-    
-                Position += Velocity;
+                
+                
+              Position += Velocity;
             }
 
-            Console.WriteLine(Velocity.Y);
+            if (Keyboard.GetState().IsKeyDown(Keys.O))
+                Velocity.Y = 0f;
+            //Console.WriteLine(Velocity.Y);
+            Console.WriteLine(Velocity.X);
+
         }
 
         public virtual void Draw(SpriteBatch spriteBatch) => spriteBatch.Draw(_texture, Position, Colour);
@@ -105,5 +102,9 @@ namespace TestGame.Sprites
         protected bool IsTouchingBottom(GameObject sprite) => _collider.IsTouchingBottom(this, sprite);
         
         protected bool IsTouchingBottom() => _collider.GetTouchingDirections(this).Any(x => x == Direction.Top);
+        protected bool IsTouchingLeft() => _collider.GetTouchingDirections(this).Any(x => x == Direction.Left);
+        protected bool IsTouchingRight() => _collider.GetTouchingDirections(this).Any(x => x == Direction.Right);
+        
+
     }
 }

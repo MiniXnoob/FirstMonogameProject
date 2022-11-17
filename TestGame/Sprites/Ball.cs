@@ -25,9 +25,11 @@ namespace TestGame.Sprites
       : base(texture, gameObjects)
     {
       Speed = 0.5f;
+      Colour = Color.White;
+
     }
 
-    public override void Update(GameTime gameTime, List<GameObject> sprites)
+        public override void Update(GameTime gameTime, List<GameObject> sprites)
     {
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
             {
