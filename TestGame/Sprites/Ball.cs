@@ -7,7 +7,9 @@ namespace TestGame.Sprites
   public class Ball : GameObject
   {
     public bool onGround;
-    public Ball(Texture2D texture, List<GameObject> gameObjects)
+    Random r = new Random();
+    private int dirRight;
+        public Ball(Texture2D texture, List<GameObject> gameObjects)
       : base(texture, gameObjects)
     {
       Speed = 0.5f;
@@ -22,6 +24,20 @@ namespace TestGame.Sprites
                 Position.Y = 100;
             }
 
+            if (Keyboard.GetState().IsKeyDown(Keys.F))
+            {
+                Thread.Sleep(20);
+                dirRight = r.Next(0, 2);
+                if (dirRight == 0)
+                {
+                    Velocity.X = r.Next(10, 20);
+                }
+                else if (dirRight == 1)
+                {
+                    Velocity.X = r.Next(-20, -10);
+                }
+
+            }
             foreach (var sprite in sprites)
             {
                 if (sprite == this)
