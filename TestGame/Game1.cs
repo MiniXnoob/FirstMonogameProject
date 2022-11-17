@@ -1,5 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using TestGame.Models;
+using Microsoft.Xna.Framework.Input;
+
 using TestGame.Sprites;
 
 namespace TestGame
@@ -44,10 +47,6 @@ namespace TestGame
 
             _sprites = new List<GameObject>()
               {
-                new Player(sBallTexture)
-                {
-
-                },
                 new Ground(groundTexture)
                 {
                     Position = new Vector2(0, 0)
