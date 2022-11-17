@@ -7,7 +7,6 @@ namespace TestGame.Sprites
 {
   public class Ball : GameObject
   {
-
     public bool onGround;
     public Ball(Texture2D texture, List<GameObject> gameObjects)
       : base(texture, gameObjects)
@@ -16,7 +15,6 @@ namespace TestGame.Sprites
       Colour = Color.White;
 
     }
-
         public override void Update(GameTime gameTime, List<GameObject> sprites)
     {
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
