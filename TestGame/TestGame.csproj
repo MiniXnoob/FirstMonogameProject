@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk.Worker">
     <PropertyGroup>
-        <!--<OutputType>WinExe</OutputType>-->
+        <OutputType>WinExe</OutputType>
         <TargetFramework>net6.0</TargetFramework>
         <PackageType>Template</PackageType>
         <Nullable>enable</Nullable>

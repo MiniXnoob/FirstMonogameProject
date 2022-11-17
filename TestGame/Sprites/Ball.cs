@@ -1,26 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-using MonoGame.Extended;
-
-using TestGame.Physics;
 
 namespace TestGame.Sprites
 {
   public class Ball : GameObject
   {
-    private Vector2? _startPosition = null;
-    private float? _startSpeed;
-    public bool onGround;
-    
-    
 
+    public bool onGround;
     public Ball(Texture2D texture, List<GameObject> gameObjects)
       : base(texture, gameObjects)
     {
@@ -37,13 +25,6 @@ namespace TestGame.Sprites
                 Position.Y = 100;
             }
 
-            //if (_startPosition == null)
-            //{
-            //  _startPosition = Position;
-            //  _startSpeed = Speed;
-
-            //}
-
         foreach (var sprite in sprites)
         {
         if (sprite == this)
@@ -59,10 +40,6 @@ namespace TestGame.Sprites
               onGround = true;
 
         }
-
-        //Position += Velocity;
-
     }  
-
     }
   }

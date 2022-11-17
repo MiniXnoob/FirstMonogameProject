@@ -1,10 +1,3 @@
-using System;
-
-using Microsoft.Xna.Framework;
-
-using TestGame;
-using TestGame.Physics;
-
 namespace TestGame
 {
     public static class Program

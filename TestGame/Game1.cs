@@ -1,11 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-
-using MonoGame.Extended.Sprites;
-
-using System.Collections.Generic;
-using TestGame.Models;
 using TestGame.Sprites;
 
 namespace TestGame
@@ -38,7 +32,6 @@ namespace TestGame
         {
             base.Initialize();
         }
-
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -70,8 +63,6 @@ namespace TestGame
                 {
                     Position = new Vector2(_width - 10, 0)
                 }
-
-                
           };
             _sprites.Add(new Ball(sBallTexture, _sprites)
             {

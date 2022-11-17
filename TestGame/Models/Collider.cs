@@ -14,16 +14,9 @@ namespace TestGame.Models
 
         public Collider()
         {
-
         }
 
         public bool IsTouching(GameObject self, GameObject gameObject) => GetTouchingDirections(self, gameObject).Any();
-
-        public bool IsTouchingV2(GameObject self, GameObject gameObject) => IsTouching(self.RectangleCollider, gameObject.RectangleCollider);
-        public Vector2 GetBounceDirection(GameObject self, GameObject gameObject) => GetBounceDirection(self.RectangleCollider, gameObject.RectangleCollider);
-        
-        public bool IsTouching(Rectangle self, Rectangle other) => self.Intersects(other);
-        public Vector2 GetBounceDirection(Rectangle self, Rectangle other) => Vector2.Reflect(self.Center.ToVector2(), other.Center.ToVector2());
         
         public IEnumerable<Direction> GetTouchingDirections(GameObject self)
         {
@@ -38,7 +31,6 @@ namespace TestGame.Models
             }
             return list;
         }
-        
             public IEnumerable<Direction> GetTouchingDirections(GameObject self, GameObject other)
         {
             var directions = new List<Direction>();
@@ -83,9 +75,6 @@ namespace TestGame.Models
             self.RectangleCollider.Right > other.RectangleCollider.Left &&
             self.RectangleCollider.Left < other.RectangleCollider.Right;
     }
-
-
-
     public enum Direction
     {
         None,
