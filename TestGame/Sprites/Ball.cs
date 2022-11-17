@@ -31,6 +31,7 @@ namespace TestGame.Sprites
             {
                 Position.X = r.Next(20, 500);
                 Position.Y = r.Next(20, 500);
+                Thread.Sleep(20);
             }
 
             if (Keyboard.GetState().IsKeyDown(Keys.F))

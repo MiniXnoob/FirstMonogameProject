@@ -40,7 +40,6 @@ namespace TestGame
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
             var playerTexture = Content.Load<Texture2D>("Block");
             var sBallTexture = Content.Load<Texture2D>("StianPexel");
             var sPBallTexture = Content.Load<Texture2D>("StianpPexel");
