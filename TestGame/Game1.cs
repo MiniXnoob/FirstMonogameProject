@@ -12,10 +12,8 @@ namespace TestGame
 {
     public class Game1 : Game
     {
-        private float ballsX;
-        private float ballsY;
-        private int _height = 1080;
-        private int _width = 1920;
+        private int _height = 1000;
+        private int _width = 1000;
         Random r = new Random();
         private int potato = 20;
         private int smallPotato = 9;
@@ -139,4 +137,4 @@ namespace TestGame
             base.Draw(gameTime);
         }
     }
-} 
+}
