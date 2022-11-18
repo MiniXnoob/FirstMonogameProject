@@ -42,14 +42,12 @@ namespace TestGame.Sprites
 
         public virtual void Update(GameTime gameTime, List<GameObject> sprites)
         {
-
         }
 
         public virtual void Move(GameTime gameTime)
         {
-
         }
-        
+
         public virtual void Gravity(GameTime gameTime)
         {
             var dt = (float)gameTime.GetElapsedSeconds();
@@ -57,29 +55,32 @@ namespace TestGame.Sprites
             var g = 9.81f;
             var gravity = mass * g;
             var accelleration = gravity * dt;
-            
-            
+
             if (UseGravity)
             {
+                var currentVelocityY = Velocity.Y;
+
                 if (!IsTouchingBottom())
                     Velocity.Y += accelleration;
                 else if (IsTouchingBottom())
-                    Velocity.Y = Velocity.Y * -1 * 1.0f;
+                    Velocity.Y = Velocity.Y * -1f * 0.95f;
                 if (IsTouchingRight() || IsTouchingLeft())
                 {
-                    Velocity.X = Velocity.X * -1 * 1.0f;
-                    
+                    Velocity.X = Velocity.X * -1 * 0.95f;
                 }
-                
-                
-              Position += Velocity;
+
+                var diff = Velocity.Y - currentVelocityY;
+
+                if (MathF.Abs(diff) < 0.1f && MathF.Abs(diff) > -0.1f)
+                {
+                    Velocity.Y = 0f;
+                }
+                Velocity *= 0.998f;
+                Position += Velocity;
             }
 
             if (Keyboard.GetState().IsKeyDown(Keys.O))
                 Velocity.Y = 0f;
-            //Console.WriteLine(Velocity.Y);
-            Console.WriteLine(Velocity.X);
-
         }
 
         public virtual void Draw(SpriteBatch spriteBatch) => spriteBatch.Draw(_texture, Position, Colour);
@@ -95,7 +96,5 @@ namespace TestGame.Sprites
         protected bool IsTouchingBottom() => _collider.GetTouchingDirections(this).Any(x => x == Direction.Top);
         protected bool IsTouchingLeft() => _collider.GetTouchingDirections(this).Any(x => x == Direction.Left);
         protected bool IsTouchingRight() => _collider.GetTouchingDirections(this).Any(x => x == Direction.Right);
-        
-
     }
 }

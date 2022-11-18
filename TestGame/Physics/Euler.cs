@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TestGame.Physics
+﻿namespace TestGame.Physics
 {
     /// <summary>
     /// Euler equations
@@ -25,9 +19,8 @@ namespace TestGame.Physics
 
         public static float ExplicitEuler(float m, float f, float dt)
         {
-            var result = (1/m * f) * dt;
+            var result = (1 / m * f) * dt;
             return result;
-
         }
 
         public static float SympleticEuler(float m, float f, float dt)
@@ -35,7 +28,6 @@ namespace TestGame.Physics
             var v = (1 / m * f) * dt;
             var result = v * dt;
             return result;
-
         }
     }
 }
